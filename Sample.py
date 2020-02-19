@@ -177,13 +177,31 @@ class LinkedList:
                 position += 1
             return self.failureValue
 
-    def listDistinct(self):
+    def listDistinct(self): # not finished yet, continue this
         if self.isListEmpty():
             return self.failureValue
         else:
             currentNode = self.head
-            while True:
-                if 
+            while currentNode.next is not None:
+                previousNode = currentNode
+                currentNode = currentNode.next
+                if currentNode.data == previousNode.data:
+                    previousNode.next = currentNode.next
+
+    def reverseList(self):
+        if self.isListEmpty():
+            return self.failureValue
+        elif self.listLength() == 1:
+            pass
+        else:
+            pNode = self.head
+            qNode = rNode = None
+            while pNode is not None:
+                rNode = qNode
+                qNode = pNode
+                pNode = pNode.next
+                qNode.next = rNode
+            self.head = qNode
 
 firstNode = Node(10)
 link = LinkedList()
@@ -198,6 +216,11 @@ newList = [Node(i) for i in range(30, 45, 5)]
 link.appendArray(newList)
 # print(link.listSum())
 # print(link.listMax())
+# for i in range(6):
+#     node = Node(int(input()))
+#     link.insertEnd(node)
+# print(link.isSorted())
+# link.listDistinct()
+link.reverseList()
 link.printList()
 # print(link.listSearch(40))
-print(link.isSorted())
